@@ -16,7 +16,7 @@
 // limitations under the License.
 //
 
-package chartutil
+package util
 
 import (
 	fuzz "github.com/AdaLogics/go-fuzz-headers"

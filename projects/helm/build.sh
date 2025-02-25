@@ -23,7 +23,7 @@ mv $SRC/cncf-fuzzing/projects/helm/loaddir_fuzzer.go \
    $SRC/helm/pkg/chart/loader/
 
 mv $SRC/cncf-fuzzing/projects/helm/chartutil_fuzzer.go \
-   $SRC/helm/pkg/chartutil/
+   $SRC/helm/pkg/chart/util/
 
 mv $SRC/cncf-fuzzing/projects/helm/driver_fuzzer.go \
    $SRC/helm/pkg/storage/driver/
@@ -53,7 +53,7 @@ mv $SRC/cncf-fuzzing/projects/helm/storage_fuzzer.go \
    $SRC/helm/pkg/storage/
 
 mv $SRC/cncf-fuzzing/projects/helm/releaseutil_fuzzer.go \
-   $SRC/helm/pkg/releaseutil/
+   $SRC/helm/pkg/release/util/
 
 mv $SRC/cncf-fuzzing/projects/helm/lint_fuzzer.go \
    $SRC/helm/pkg/lint/
@@ -70,8 +70,8 @@ compile_native_go_fuzzer helm.sh/helm/v3/pkg/ignore FuzzIgnoreParse fuzz_ignore_
 compile_native_go_fuzzer helm.sh/helm/v3/pkg/strvals FuzzParse fuzz_strvals_parse
 compile_go_fuzzer helm.sh/helm/v3/internal/resolver FuzzResolve fuzz_resolve
 compile_go_fuzzer helm.sh/helm/v3/pkg/lint FuzzLintAll fuzz_lint_all
-compile_go_fuzzer helm.sh/helm/v3/pkg/releaseutil FuzzSplitManifests fuzz_split_manifests
-compile_go_fuzzer helm.sh/helm/v3/pkg/releaseutil FuzzSortManifests fuzz_sort_manifests
+compile_go_fuzzer helm.sh/helm/v3/pkg/release/util FuzzSplitManifests fuzz_split_manifests
+compile_go_fuzzer helm.sh/helm/v3/pkg/release/util FuzzSortManifests fuzz_sort_manifests
 compile_go_fuzzer helm.sh/helm/v3/pkg/storage FuzzStorage fuzz_storage
 compile_go_fuzzer helm.sh/helm/v3/pkg/provenance FuzzNewFromFiles fuzz_new_from_files
 compile_go_fuzzer helm.sh/helm/v3/pkg/provenance FuzzParseMessageBlock fuzz_parse_message_block
@@ -99,10 +99,10 @@ compile_go_fuzzer helm.sh/helm/v3/pkg/action FuzzDependencyList fuzz_dependency_
 compile_go_fuzzer helm.sh/helm/v3/pkg/action FuzzActionList fuzz_action_list
 compile_go_fuzzer helm.sh/helm/v3/pkg/action FuzzActionUninstall fuzz_action_uninstall
 compile_go_fuzzer helm.sh/helm/v3/pkg/chart/loader FuzzLoadDir fuzz_load_dir
-compile_go_fuzzer helm.sh/helm/v3/pkg/chartutil FuzzProcessDependencies fuzz_process_dependencies
-compile_go_fuzzer helm.sh/helm/v3/pkg/chartutil FuzzIsChartDir fuzz_is_chart_dir
-compile_go_fuzzer helm.sh/helm/v3/pkg/chartutil FuzzExpandFile fuzz_expand_file
-compile_go_fuzzer helm.sh/helm/v3/pkg/chartutil FuzzCreateFrom fuzz_create_from
+compile_go_fuzzer helm.sh/helm/v3/pkg/chart/util FuzzProcessDependencies fuzz_process_dependencies
+compile_go_fuzzer helm.sh/helm/v3/pkg/chart/util FuzzIsChartDir fuzz_is_chart_dir
+compile_go_fuzzer helm.sh/helm/v3/pkg/chart/util FuzzExpandFile fuzz_expand_file
+compile_go_fuzzer helm.sh/helm/v3/pkg/chart/util FuzzCreateFrom fuzz_create_from
 compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzIndex fuzz_index
 compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzIndexDirectory fuzz_index_directory
 compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzDownloadIndexFile fuzz_download_index_file
@@ -110,12 +110,12 @@ compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzChartRepositoryLoad fuzz_chart_re
 compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzRepoFileUtils fuzz_repo_file_utils
 compile_go_fuzzer helm.sh/helm/v3/pkg/repo FuzzWriteFile fuzz_write_file
 
-zip $OUT/fuzz_create_from_seed_corpus.zip $SRC/helm/pkg/chartutil/testdata/frobnitz/*
+zip $OUT/fuzz_create_from_seed_corpus.zip $SRC/helm/pkg/chart/util/testdata/frobnitz/*
 mv $SRC/cncf-fuzzing/projects/helm/dicts/* $OUT/
 
 zip $OUT/fuzz_action_run_seed_corpus.zip \
-    $SRC/helm/pkg/chartutil/testdata/test-values.schema.json \
-    $SRC/helm/pkg/chartutil/testdata/test-values.yaml
+    $SRC/helm/pkg/chart/util/testdata/test-values.schema.json \
+    $SRC/helm/pkg/chart/util/testdata/test-values.yaml
 
 zip $OUT/fuzz_registry_client_seed_corpus.zip \
     $SRC/helm/pkg/repo/repotest/testdata/examplechart-0.1.0.tgz

@@ -19,10 +19,8 @@
 package engine
 
 import (
-	"helm.sh/helm/v3/pkg/chart"
-	"helm.sh/helm/v3/pkg/chartutil"
-
 	fuzz "github.com/AdaLogics/go-fuzz-headers"
+	"helm.sh/helm/v3/pkg/chart/util"
 )
 
 func FuzzEngineRender(data []byte) int {
@@ -36,7 +34,7 @@ func FuzzEngineRender(data []byte) int {
 	if err != nil {
 		return 0
 	}
-	values, err := chartutil.ReadValues(valuesBytes)
+	values, err := util.ReadValues(valuesBytes)
 	if err != nil {
 		return 0
 	}
@@ -51,7 +49,7 @@ func FuzzEngineFiles(data []byte) int {
 		return 0
 	}
 	files := make(files, 0)
-	for i:=0;i<noOfEntries%15;i++ {
+	for i := 0; i < noOfEntries%15; i++ {
 		name, err := f.GetString()
 		if err != nil {
 			return 0
